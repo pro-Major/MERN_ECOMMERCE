@@ -4,9 +4,9 @@
   "description": "A Ecommerce Website made using MERN stack.",
   "main": "server.js",
   "scripts": {
-    "start": "node SERVER/server.js",
-    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon SERVER/server",
-    "prod": "SET NODE_ENV=PRODUCTION& nodemon SERVER/server"
+    "start": "nodemon SERVER/server.js",
+    "dev": "set NODE_ENV=DEVELOPMENT && nodemon SERVER/server.js",
+    "prod" : "set NODE_ENV=PRODUCTION && nodemon SERVER/server.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/pro-Major/MERN_ECOMMERCE#readme",
   "dependencies": {
+    "chalk": "^4.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.11.17"
