@@ -15,7 +15,7 @@ ConnectToDataBase();
 
 app.listen(port, ()=> {
     if(process.env.NODE_ENV = "DEVELOPMENT") {
-    console.log(chalk.bgYellow.white.bold`Server Started on PORT : ${port} in`+`  `+chalk.bgBlueBright`${process.env.NODE_ENV} mode`)
+    console.log(chalk.bgYellow.black`Server Started on PORT : ${port} in`+`  `+chalk.bgBlueBright`${process.env.NODE_ENV} mode`)
   }
   else {
     console.log(chalk.bgYellow.white.bold`Server Started on PORT : ${port} in`+`  `+chalk.bgRed`${process.env.NODE_ENV} mode`)
