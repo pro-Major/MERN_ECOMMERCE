@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 //Product Controllers
-const {getProducts,newProduct} = require('../controllers/productController')
+const {getProducts,newProduct,getSingleProduct} = require('../controllers/productController')
 
 
 //Posting Data in DataBase 
@@ -12,13 +12,15 @@ router.route('/newproduct')
 
 
 
-
-//Getting Products
+//Getting Single Product
+//Getting Productsrouter.route('/:id)
 router.route('/')
 .get(getProducts);
 
 
-
+//Getting Single Product
+router.route('/:id')
+.get(getSingleProduct)
 
 
 module.exports= router;
