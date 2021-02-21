@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const productsSchema = new mongoose.Schema({
     Pname : {
-        type : string,
+        type : String,
         required: [true, 'Please Enter Product Name'],
         trim : true,
         maxLength: [100, 'Product name cannot exceed 100 characters']
@@ -22,13 +22,66 @@ const productsSchema = new mongoose.Schema({
     PRatings: { type : Number,
     default : 0,
     },
-    pImages: {
+    Pimages: {
         type: Array,
-        required: true,
+        required: false,
       },
-    PCategories: { 
+    Pcategories: { 
         type : String,
-        required: [true, 'Please Select Category For This Product']
+        required: [false, 'Please Select Category For This Product'],
+        enum: {
+                values : [
+                    'Electronic',
+                    'Camera',
+                    'Laptop',
+                    'Accessories',
+                    'Headphones',
+                    'books',
+                    'Clothes/Shoes',
+                    'Beauty/Health',
+                    'Sports',
+                    'Outdoor',
+                    'Home',
+                  
+                ],
+                message: 'Please Select a Category'
+        }
+    },
+    Pseller: {
+        type: 'String',
+        required: [true,'Please Enter a Product Seller ']
+    },
+    Pstocks:{
+        type:'Number',
+        required: [true, 'Please Enter Product Stock'],
+        maxLength: [5, 'Product Name cannot 5 characters '],
+        default : 0,
+
+    },
+    PNumberofReviews:{ 
+        type:'Number',
+        default : 0,
+
+    },
+    ProductReviews:[
+        {
+            name: {
+                type : String,
+                required: true,
+            },
+            rating: {
+                type : Number,
+                required: true,
+            },
+            comments : {
+                type : String,
+                required: true,
+            }
+        }
+    ],
+    CreatedAT: {
+        type : Date,
+        default : Date.now
     }
 
 

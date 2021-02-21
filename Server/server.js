@@ -1,14 +1,19 @@
+
 const app = require('./app')
 const dotenv = require('dotenv');
 const chalk = require('chalk');
-const port = process.env.PORT || 3200;
+
+
 const ConnectToDataBase = require('./configuration/DB')
+
 //Setting Configuration Files 
+
 dotenv.config({ path : 'Server/configuration/config.env'})
 
 
 
-
+//Setting up the port   
+const port = process.env.PORT ?? 3200;
 //Connecting to database
 ConnectToDataBase();
 
