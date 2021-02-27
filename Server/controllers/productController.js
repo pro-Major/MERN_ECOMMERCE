@@ -1,6 +1,7 @@
 const Products = require('../models/products');
 const ErrorHandler = require('../utils/ErrorHandler')
 const CatchAsyncERROR = require('../middlewares/catchAsyncErrors')
+const SearchFilterApi = require('../utils/SearchFilterAPI')
 Products.init()
 
 
@@ -19,7 +20,10 @@ exports.newProduct = CatchAsyncERROR (
 
 //Getting ALl Products from the server      => /products/
 exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
-    const products = await Products.find();
+    const searchfilter = new SearchFilterApi(Products.find(), req.query )
+                            .searchFilterMethod() 
+    
+    const products = await searchfilter.query;
     if(!products) {
         return next(new ErrorHandler('Products Not Found', 404))
     }

@@ -7,7 +7,8 @@ const {getProducts,
     newProduct,
     getSingleProduct,
     updateProduct,
-     deleteProducts} = require('../controllers/productController')
+     deleteProducts,
+     } = require('../controllers/productController')
 
 
 //Posting Data in DataBase 
@@ -20,6 +21,8 @@ router.route('/newproduct')
 //Getting Productsrouter.route('/:id)
 router.route('/')
 .get(getProducts);
+
+
 
 
 //Getting Single Product

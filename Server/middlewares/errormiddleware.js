@@ -1,7 +1,6 @@
 const ErrorHandler = require('../utils/ErrorHandler')
 
 module.exports = (err, req, res,next) => {
-    console.log('congrats you hit the error middleware');
     err.statusCode = err.statusCode || 500;
     err.message = err.message || 'Internal Server Error';
     if(process.env.NODE_ENV == 'DEVELOPMENT') {
