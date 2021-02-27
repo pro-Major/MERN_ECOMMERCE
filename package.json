@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon SERVER/server.js",
-    "dev": "set NODE_ENV=DEVELOPMENT && nodemon SERVER/server.js",
-    "prod" : "set NODE_ENV=PRODUCTION && nodemon SERVER/server.js"
+    "dev": "set NODE_ENV='DEVELOPMENT' && nodemon SERVER/server.js",
+    "prod" : "set NODE_ENV='PRODUCTION' && nodemon SERVER/server.js"
   },
   "repository": {
     "type": "git",

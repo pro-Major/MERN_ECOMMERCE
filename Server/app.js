@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const ErrorMiddleware = require('./middlewares/errorhandler')
+const ErrorMiddleware = require('./middlewares/errormiddleware')
 //JSON 
 app.use(express.json());
 //Importing All Routes 

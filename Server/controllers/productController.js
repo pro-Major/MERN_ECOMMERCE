@@ -6,6 +6,7 @@ Products.init()
 //Create NEW Product
 exports.newProduct = async (req, res, next) => {
     const products = await Products.create(req.body);
+       
     res.status(201).json({
         success: true,
         products: products
@@ -16,6 +17,9 @@ exports.newProduct = async (req, res, next) => {
 //Getting ALl Products from the server      => /products/
 exports.getProducts = async (req,res, next)=> {
     const products = await Products.find();
+    if(!products) {
+        return next(new ErrorHandler('Products Not Found', 404))
+    }
     res.status(201).json({
         success : true,
         count : products.length,
@@ -31,10 +35,7 @@ exports.getSingleProduct = async (req, res, next)=> {
    
 
     if((!singleproduct)) {
-       return res.status(404).json({
-            success : false,
-            message : 'product not found'
-        })
+        return next(new ErrorHandler('Products Not Found', 404))
     }
     res.status(200).json({
         success : true,
