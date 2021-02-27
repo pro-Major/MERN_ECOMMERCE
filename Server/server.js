@@ -2,6 +2,23 @@ const app = require('./app')
 const dotenv = require('dotenv');
 const chalk = require('chalk');
 
+//Handling UnHandled Promise Rejections
+process.on('unhandledRejection',err => {
+  console.log(chalk.bgWhite.black`Error : ${err.message}`);
+  console.log(chalk.red`Shutting Down The Server Due to Unhandled Promises`);
+  server.close(()=> {
+    process.exit(1)
+  })
+})
+//Handling Uncaught Exceptions
+process.on('uncaughtException',err =>{
+console.log(chalk.bgWhite.black`Error : ${err.message}`);
+  console.log(chalk.bgWhite.red.bold`Shutting Down The Server Due to uncaught Exceptions`);
+  server.close(()=> {
+    process.exit(1)
+  })
+})
+
 //Setting Configuration Files 
 dotenv.config({ path : 'Server/configuration/config.env'})
 
@@ -17,7 +34,7 @@ const port = process.env.PORT ?? 3200;
 ConnectToDataBase();
 
 
-app.listen(port, ()=> {
+const server = app.listen(port, ()=> {
     if(process.env.NODE_ENV = "DEVELOPMENT") {
     console.log(chalk.bgYellow.black`Server Started on PORT : ${port} in`+`  `+chalk.bgBlueBright`${process.env.NODE_ENV} mode`)
   }
@@ -26,4 +43,4 @@ app.listen(port, ()=> {
     
   }
 }) 
-console.log(process.env.NODE_ENV)
+

@@ -1,21 +1,24 @@
 const Products = require('../models/products');
 const ErrorHandler = require('../utils/ErrorHandler')
+const CatchAsyncERROR = require('../middlewares/catchAsyncErrors')
 Products.init()
 
 
 //Create NEW Product
-exports.newProduct = async (req, res, next) => {
-    const products = await Products.create(req.body);
-       
-    res.status(201).json({
-        success: true,
-        products: products
-    })
-}
+exports.newProduct = CatchAsyncERROR (
+    async (req, res, next) => {
+        const products = await Products.create(req.body);
+           
+        res.status(201).json({
+            success: true,
+            products: products
+        })
+    }
+) 
 
 
 //Getting ALl Products from the server      => /products/
-exports.getProducts = async (req,res, next)=> {
+exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
     const products = await Products.find();
     if(!products) {
         return next(new ErrorHandler('Products Not Found', 404))
@@ -28,9 +31,9 @@ exports.getProducts = async (req,res, next)=> {
     
     })
 }
-
+)
 //Getting Products By ID and
-exports.getSingleProduct = async (req, res, next)=> {
+exports.getSingleProduct = CatchAsyncERROR ( async (req, res, next)=> {
     const singleproduct = await Products.findById(req.params.id);
    
 
@@ -42,11 +45,11 @@ exports.getSingleProduct = async (req, res, next)=> {
         singleproduct : singleproduct
     })
 }
-
+)
 
 //Updating Products 
 
-exports.updateProduct = async (req, res, next)=> {
+exports.updateProduct = CatchAsyncERROR ( async (req, res, next)=> {
     let updateproduct = await Products.findById(req.params.id); 
     if((!updateproduct)) {
                 return res.status(404).json({
@@ -68,9 +71,10 @@ exports.updateProduct = async (req, res, next)=> {
     // console.log(updateproduct)
      
 }
+)
 
 
-exports.deleteProducts = async (req, res, next) => {
+exports.deleteProducts = CatchAsyncERROR ( async (req, res, next) => {
    let deleteproducts= await Products.findById(req.params.id)
 
    if(!deleteproducts) {
@@ -84,3 +88,4 @@ exports.deleteProducts = async (req, res, next) => {
        message: "Product deleted"
    })
 }
+)
