@@ -5,8 +5,10 @@ const ErrorMiddleware = require('./middlewares/errormiddleware')
 app.use(express.json());
 //Importing All Routes 
 const products = require('./routes/products')
+const auth = require('./routes/auth')
 
 app.use('/products',products)
+app.use('/auth',auth)
 
 //Middleware for handline Errors
 app.use(ErrorMiddleware)

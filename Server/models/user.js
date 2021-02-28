@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
          name : {type : 'string' , 
          required: [true , 'Please Enter Your Name'],
-         maxLength : [30, 'Your Name Cannot Be More Than 30 Characters'],
+         maxlength : [30, 'Your Name Cannot Be More Than 30 Characters'],
 
      },
      email : {type : 'string',
@@ -12,22 +14,23 @@ const userSchema = new mongoose.Schema({
      unique : true,
      validate : [validator.isEmail, 'Please Enter Valid Email Address']
      },
-     passwords : {type : 'string' ,
-    required: [true , 'Please Enter Your Passwords'],
-    minLength : [6,'Your Passwords must be at least 6 characters'],
+     password : {type : 'string' ,
+    required: [true , 'Please Enter Your Password'],
+    minlength : [6,'Your Password must be at least 6 characters'],
     select : false,
 
     },
-    avatar : { 
-        publicid : {
-        type : 'string',
-        required: [true]},
+    //Thoght of adding images but not did it.
+    // avatar : { 
+    //     publicid : {
+    //     type : 'string',
+    //     required: [true]},
 
-        url : { type : 'string' ,
-                required : [true]
+    //     url : { type : 'string' ,
+    //             required : [true]
             
-        },
-    },
+    //     },
+    // },
 
     role : {type : 'string' ,
             default : 'user'
@@ -40,9 +43,29 @@ const userSchema = new mongoose.Schema({
     resetPasswordToken:String,
     resetPasswordExpires:Date
 
-
-
+        
         
     
 })
+//Encrypting the password before asving user
+userSchema.pre('save', async function (next) {
+       if(!this.isModified('password')) {
+           next();
+       }     
+       this.password = await bcrypt.hash(this.password , 10)
+}) 
+
+//Return JWT token
+userSchema.methods.getJwtToken =  function() {
+    return jwt.sign({id :  this._id}, process.env.JWT_SECRET, {
+    expiresIn : process.env.JWT_EXPIRES_TIME 
+});
+}
+
+
+
+
+
+
+
 module.exports = mongoose.model('User',userSchema)
