@@ -37,5 +37,14 @@ exports.loginUser = CatchAsyncERROR (async (req,res,next)=> {
         return next(new ErrorHandler('invalid Email or Password',401));
     }
     //Checks If a Password is correct or not 
-    
+    const isPasswordMatched = await user.comparePassword(password);
+
+    if(!isPasswordMatched) {
+        return next(new ErrorHandler('invalid Email or Password',401));
+    }
+    const token = user.getJwtToken();
+    res.status(200).json({
+        success : true,
+        token
+    })
 })
