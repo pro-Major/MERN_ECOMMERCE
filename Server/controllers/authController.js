@@ -5,7 +5,7 @@ const CatchAsyncERROR = require('../middlewares/catchAsyncErrors');
 
 //Register a User 
 exports.registerUser = CatchAsyncERROR ( async (req, res, next)=> {
-    const { name,email,password} =req.body;
+    const {name,email,password} =req.body;
 
     const user = await User.create({
         name,
