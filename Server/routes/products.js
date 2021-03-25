@@ -9,7 +9,7 @@ const {getProducts,
     updateProduct,
      deleteProducts,
      } = require('../controllers/productController')
-
+const { isAuthenticatedUser} = require('./middlewares/auth');
 
 //Posting Data in DataBase 
 router.route('/newproduct')
@@ -20,7 +20,7 @@ router.route('/newproduct')
 //Getting Single Product
 //Getting Productsrouter.route('/:id)
 router.route('/')
-.get(getProducts);
+.get(isAuthenticatedUser,getProducts);
 
 
 
