@@ -24,7 +24,7 @@ router.route('/')
 .get(isAuthenticatedUser,getProducts);
 
 
-
+     
 
 //Getting Single Product
 router.route('/:id')
