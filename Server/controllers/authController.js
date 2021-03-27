@@ -5,13 +5,8 @@ const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const sendToken = require('../utils/jwtToken');
 
 //Register a User 
-<<<<<<< HEAD
-    exports.registerUser = CatchAsyncERROR ( async (req, res, next)=> {
-    const { name,email,password} =req.body;
-=======
 exports.registerUser = catchAsyncErrors ( async (req, res, next)=> {
     const {name,email,password} =req.body;
->>>>>>> 711eb3762feb36942ff0bb168f0a413850d2c768
 
     const user = await User.create({
         name,
@@ -31,11 +26,7 @@ exports.registerUser = catchAsyncErrors ( async (req, res, next)=> {
 
 
 //Login a User
-<<<<<<< HEAD
-    exports.loginUser = CatchAsyncERROR (async (req,res,next)=> {
-=======
 exports.loginUser = catchAsyncErrors (async (req,res,next)=> {
->>>>>>> 711eb3762feb36942ff0bb168f0a413850d2c768
     const {email,password} = req.body;
 
     //checking if email and password entered by user

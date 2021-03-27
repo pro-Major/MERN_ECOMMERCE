@@ -1,7 +1,7 @@
 {
-  "name": "mern_ecommerce",
+  "name": "Mern_Ecommerce",
   "version": "1.0.0",
-  "description": "A Ecommerce Website made using MERN stack.",
+  "description": "An Ecommerce Website made using MERN stack.",
   "main": "server.js",
   "scripts": {
     "start": "nodemon SERVER/server.js",
