@@ -4,9 +4,6 @@ module.exports = (err, req, res, next) => {
 
     err.statusCode = err.statusCode || 500;
     err.message = err.message || 'Internal Server Error';
-<<<<<<< HEAD
-    if(process.env.NODE_ENV === 'DEVELOPMENT') {
-=======
 
 
     if(err.name = "CastError") {
@@ -14,8 +11,8 @@ module.exports = (err, req, res, next) => {
             error = new ErrorHandler(message,400)
     }
 
+
     if(process.env.NODE_ENV == 'DEVELOPMENT') {
->>>>>>> 1ac3cf14481b431162978a5017737124c4aea48d
         res.status(err.statusCode).json({
             success: false,
             ErrorName : err.name,
@@ -25,12 +22,9 @@ module.exports = (err, req, res, next) => {
             
         })       
     }
-<<<<<<< HEAD
-    if(process.env.NODE_ENV === 'PRODUCTION'){
-=======
+  
 
     if(process.env.NODE_ENV == 'PRODUCTION'){
->>>>>>> 1ac3cf14481b431162978a5017737124c4aea48d
           let error = {...err}
           error.message = err.message
 
@@ -40,8 +34,12 @@ module.exports = (err, req, res, next) => {
             error = new ErrorHandler(message,400)
         }
 
-
-
+        
+      //Handling Mongoose Validation Error
+      if(err.name == 'ValidationError'){
+        const message = Object.values(err.errors).map(value => value.message);
+        error = new ErrorHandler(message ,400)
+    }
 
         res.status(error.statusCode).json({
             success: false,
