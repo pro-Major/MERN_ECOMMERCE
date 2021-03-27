@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     select : false,
 
     },
-    //Thoght of adding images but not did it.
+    //Thought of adding images but not did it.
     // avatar : { 
     //     publicid : {
     //     type : String,

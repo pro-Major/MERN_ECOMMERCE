@@ -10,7 +10,7 @@ const auth = require('./routes/auth')
 app.use('/products',products)
 app.use('/auth',auth)
 
-//Middleware for handline Errors
+//Middleware to handle Errors
 app.use(ErrorMiddleware)
 
 
