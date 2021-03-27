@@ -46,6 +46,7 @@ const productsSchema = new mongoose.Schema({
                 ],
                 message: 'Please Select a Category'
         }
+        
     },
     Pseller: {
         type: 'String',
