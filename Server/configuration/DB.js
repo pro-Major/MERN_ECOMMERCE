@@ -8,7 +8,7 @@ const ConnectToDataBase = ()=> {
         useCreateIndex: true,
         useUnifiedTopology: true,
       })
-      .then(()=> {console.log(`${chalk.cyan('✓ ')}` + chalk.bgGreenBright.white.bold("Connected with DataBase"))}) 
+      .then(()=> {console.log(`${chalk.cyan('✓ ')}` + chalk.bgGreenBright.white.bold("Connected with Mongo DataBase"))}) 
       .catch((error)=> {console.log(`${chalk.red.bold('X ')}`+
         error)}) 
     
