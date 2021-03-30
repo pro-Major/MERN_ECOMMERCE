@@ -1,4 +1,6 @@
 const ErrorHandler = require('../utils/ErrorHandler')
+require('dotenv').config({path : 'Server/configuration/.env'});
+
 
 module.exports = (err, req, res, next) => {
 
@@ -6,13 +8,17 @@ module.exports = (err, req, res, next) => {
     err.message = err.message || 'Internal Server Error';
 
 
-    if(err.name = "CastError") {
-        const message = `Resource not found . Invalid : ${err.path}`
-            error = new ErrorHandler(message,400)
-    }
+    // if(err.name = "CastError") {
+    //     const message = `Resource not found . Invalid : ${err.path}`
+    //         error = new ErrorHandler(message,400)
+    // }
+    
 
+    if(process.env.NODE_ENV ==='DEVELOPMENT')  
+    console.log('production mode is working')
 
-    if(process.env.NODE_ENV == 'DEVELOPMENT') {
+     { 
+         
         res.status(err.statusCode).json({
             success: false,
             ErrorName : err.name,
@@ -22,18 +28,18 @@ module.exports = (err, req, res, next) => {
             
         })       
     }
-  
-
-    if(process.env.NODE_ENV == 'PRODUCTION'){
+    if(process.env.NODE_ENV === 'PRODUCTION'){
           let error = {...err}
           error.message = err.message
-
+        {
+            console.log('production mode is working')
+        }
         //Wrong Mongoose Object ID Error Handle   Message : Cast to ObjectId failed for value
-        if(err.name == 'CastError') {
+        if(err.name === 'CastError') {
             const message = `Resource not found . Invalid : ${err.path}`
             error = new ErrorHandler(message,400)
+            console.log('CAst ERROR WORKED')
         }
-
         
       //Handling Mongoose Validation Error
       if(err.name == 'ValidationError'){

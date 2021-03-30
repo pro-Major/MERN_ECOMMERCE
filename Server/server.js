@@ -51,6 +51,7 @@ const NODE_ENV = process.env.NODE_ENV;
 
 //Running The Server
 const server = app.listen(port, ()=> {
+  
     console.log(chalk.bgYellow.black`Server Started on PORT : ${port} in`+`  `+chalk.bgBlueBright`${NODE_ENV}`+` mode`)
   
 }) 
