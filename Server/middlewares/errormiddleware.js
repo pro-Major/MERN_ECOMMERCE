@@ -19,20 +19,18 @@ module.exports = (err, req, res, next) => {
             
         })       
     }
-
+   
 //Handling Production Errors 
     if(process.env.NODE_ENV === 'PRODUCTION'){
           let error = {...err}
           error.message = err.message
-        {
-            console.log('production mode is working')
-        }
-    //     //Wrong Mongoose Object ID Error Handle   Message : Cast to ObjectId failed for value
-    //     if(err.name === 'CastError') {
-    //         const message = `Resource not found . Invalid : ${err.path}`
-    //         error = new ErrorHandler(message,400)
-    //         console.log('CAst ERROR WORKED')
-    //     }
+    
+        //Wrong Mongoose Object ID Error Handle   Message : Cast to ObjectId failed for value
+        if(err.name == 'CastError') {
+            const message = `Resource not found . Invalid : ${err.path}`
+            error = new ErrorHandler(message,400)
+           
+        
         
     //   //Handling Mongoose Validation Error
     //   if(err.name == 'ValidationError'){
@@ -45,4 +43,5 @@ module.exports = (err, req, res, next) => {
             message: err.message || 'Internal Server Error'
         })
     }
+}
 }
