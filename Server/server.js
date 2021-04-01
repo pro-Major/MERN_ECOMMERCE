@@ -37,7 +37,7 @@ console.log(chalk.bgWhite.black`Error : ${err.message}`);
 
 
 //Setting up the database 
-const ConnectToDataBase = require('./configuration/DB');
+const ConnectToDataBase = require('./connection/DB');
 //Connecting to database
 ConnectToDataBase();
 
