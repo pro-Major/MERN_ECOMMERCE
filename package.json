@@ -4,9 +4,9 @@
   "description": "An Ecommerce Website made using MERN stack.",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon SERVER/server.js",
-    "dev": "set NODE_ENV='DEVELOPMENT' && nodemon SERVER/server.js",
-    "prod": "set NODE_ENV='PRODUCTION' && nodemon SERVER/server.js"
+    "start": "node Server/server.js",
+    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon Server/server",
+    "prod": "SET NODE_ENV=PRODUCTION& nodemon Server/server"
   },
   "repository": {
     "type": "git",

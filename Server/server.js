@@ -1,7 +1,7 @@
 //Setting Configuration Files 
-// const dotenv = require('dotenv');
-// const result = dotenv.config({ path : 'Server/configuration/config.env'})
-require('dotenv').config({path : 'Server/configuration/.env'});
+const dotenv = require('dotenv');
+dotenv.config({ path : 'Server/config/.env'})
+// require('dotenv').config({path : 'Server/configuration/.env'});
 const app = require('./app')
 const chalk = require('chalk');
 
