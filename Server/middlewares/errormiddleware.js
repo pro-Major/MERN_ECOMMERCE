@@ -15,7 +15,7 @@ module.exports = (err, req, res, next) => {
             ErrorName : err.name,
             error : err,
             errmessage: err.message,
-            stack : err.stack,
+            stack : err.stack
             
         })       
     }
@@ -24,24 +24,23 @@ module.exports = (err, req, res, next) => {
     if(process.env.NODE_ENV === 'PRODUCTION'){
           let error = {...err}
           error.message = err.message
-    
-        //Wrong Mongoose Object ID Error Handle   Message : Cast to ObjectId failed for value
-        if(err.name == 'CastError') {
+
+//Wrong Mongoose Object ID Error Handle   Message : Cast to ObjectId failed for value
+        if(err.name == "CastError") {
             const message = `Resource not found . Invalid : ${err.path}`
             error = new ErrorHandler(message,400)
            
-        
-        
-    //   //Handling Mongoose Validation Error
-    //   if(err.name == 'ValidationError'){
-    //     const message = Object.values(err.errors).map(value => value.message);
-    //     error = new ErrorHandler(message ,400)
-    // }
-
-        res.status(error.statusCode).json({
-            success: false,
-            message: err.message || 'Internal Server Error'
-        })
+        }
+//Handling Mongoose Validation Error
+      if(err.name == 'ValidationError'){
+        const message = Object.values(err.errors).map(value => value.message);
+        error = new ErrorHandler(message ,400)
     }
-}
+
+          res.status(error.statusCode).json({
+
+            success: false,
+            message: error.message || 'Internal Server Error'
+        })     
+    }
 }
