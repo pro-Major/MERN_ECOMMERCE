@@ -1,8 +1,8 @@
 const Products = require('../models/products');
 const ErrorHandler = require('../utils/ErrorHandler')
 const CatchAsyncERROR = require('../middlewares/catchAsyncErrors')
-const SearchFilterApi = require('../utils/SearchFilterAPI')
-Products.init()
+const APIFeatures = require('../utils/apiFeatures')
+Products.init() 
 
 
 //Create NEW Product
@@ -19,20 +19,20 @@ exports.newProduct = CatchAsyncERROR (
 
 
 //Getting ALl Products from the server      => /products/
+//getting listed  products from search => /products?keyword=apple.
 exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
-    const searchfilter = new SearchFilterApi(Products.find(), req.query )
-                            .searchFilterMethod() 
+    const apiFeatures = new APIFeatures(Products.find(), req.query)
+        .search() 
     
-    const products = await searchfilter.query;
+    const products = await apiFeatures.query;
+    
     if(!products) {
         return next(new ErrorHandler('Products Not Found', 404))
     }
-    res.status(201).json({
+    res.status(200).json({
         success : true,
         count : products.length,
-        products: products
-    
-    
+        products
     })
 }
 )
@@ -40,8 +40,8 @@ exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
 exports.getSingleProduct = CatchAsyncERROR ( async (req, res, next)=> {
     const singleproduct = await Products.findById(req.params.id);
    
-
-    if((!singleproduct)) {
+    console.log(singleproduct)
+    if((!singleproduct)) {  
         return next(new ErrorHandler('Products Not Found', 404))
     }
     res.status(200).json({
