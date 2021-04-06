@@ -15,10 +15,12 @@ exports.newProduct = CatchAsyncERROR (
             products: products
         })
     }
-) 
+);
 
 
-//Getting ALl Products from the server      => /products/
+
+//Getting ALl Products from the server      => /products/:id
+
 //getting listed  products from search => /products?keyword=apple.
 exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
     const resPerPage = 4;
@@ -38,8 +40,8 @@ exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
         productCount,
         products
     })
-}
-)
+});
+
 //Getting Products By ID and
 exports.getSingleProduct = CatchAsyncERROR ( async (req, res, next)=> {
     const singleproduct = await Products.findById(req.params.id);
@@ -52,8 +54,8 @@ exports.getSingleProduct = CatchAsyncERROR ( async (req, res, next)=> {
         success : true,
         singleproduct : singleproduct
     })
-}
-)
+});
+
 
 //Updating Products 
 
@@ -78,8 +80,8 @@ exports.updateProduct = CatchAsyncERROR ( async (req, res, next)=> {
     })
     // console.log(updateproduct)
      
-}
-)
+});
+
 
 
 exports.deleteProducts = CatchAsyncERROR ( async (req, res, next) => {
@@ -95,5 +97,4 @@ exports.deleteProducts = CatchAsyncERROR ( async (req, res, next) => {
        success: true,
        message: "Product deleted"
    })
-}
-)
+});
