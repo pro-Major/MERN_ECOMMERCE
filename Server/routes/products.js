@@ -20,8 +20,7 @@ router.route('/newproduct')
 
 //Getting Single Product
 //Getting Productsrouter.route('/:id)
-router.route('/')
-.get(isAuthenticatedUser,getProducts);
+router.route('/').get(isAuthenticatedUser,getProducts);
 
 
      

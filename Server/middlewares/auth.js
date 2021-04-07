@@ -1,4 +1,4 @@
-const user = require('../models/user');
+const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const ErrorHandler = require('../utils/ErrorHandler');
 const catchAsyncErrors = require('./catchAsyncErrors');
@@ -12,7 +12,7 @@ exports.isAuthenticatedUser = catchAsyncErrors ( async (req, res, next )=> {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    req.user = await User.findById(decoded.id);
+    req.User = await User.findById(decoded.id);
 
     next()
 }) 
