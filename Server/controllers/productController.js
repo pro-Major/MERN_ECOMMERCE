@@ -22,6 +22,7 @@ exports.newProduct = CatchAsyncERROR (
 //getting listed  products from search => /products?keyword=apple.
 exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
     const resPerPage = 4;
+    const productCount = await Products.countDocuments();
     const apiFeatures = new APIFeatures(Products.find(), req.query)
         .search() 
         .pagination(resPerPage)
@@ -34,6 +35,7 @@ exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
     res.status(200).json({
         success : true,
         count : products.length,
+        productCount,
         products
     })
 }
