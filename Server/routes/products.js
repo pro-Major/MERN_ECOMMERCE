@@ -27,7 +27,7 @@ router.route('/').get(isAuthenticatedUser,getProducts);
 
 //Getting Single Product
 router.route('/:id')
-.get(getSingleProduct)
-.post(updateProduct)
-.delete(deleteProducts)
+.get(isAuthenticatedUser,getSingleProduct)
+.post(isAuthenticatedUser,updateProduct)
+.delete(isAuthenticatedUser,deleteProducts)
 module.exports= router;
