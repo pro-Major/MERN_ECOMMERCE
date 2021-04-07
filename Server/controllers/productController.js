@@ -2,12 +2,14 @@ const Products = require('../models/products');
 const ErrorHandler = require('../utils/ErrorHandler')
 const CatchAsyncERROR = require('../middlewares/catchAsyncErrors')
 const APIFeatures = require('../utils/apiFeatures')
+// const User = require('../models/user');
 Products.init() 
 
 
 //Create NEW Product
 exports.newProduct = CatchAsyncERROR (
     async (req, res, next) => {
+        req.body.user = req.User.id;
         const products = await Products.create(req.body);
            
         res.status(201).json({
