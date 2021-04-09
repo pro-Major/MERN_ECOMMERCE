@@ -18,7 +18,7 @@ router.route('/newproduct')
 
 
 //Get All Products 
-router.route('/').get(isAuthenticatedUser,getProducts);
+router.route('/').get(isAuthenticatedUser,authorizeRoles('admin'),getProducts);
 
 
      
