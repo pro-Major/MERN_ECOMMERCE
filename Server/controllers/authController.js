@@ -4,6 +4,7 @@ const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const sendToken = require('../utils/jwtToken');
 const sendEmail = require('../utils/sendEmail')
 const crypto = require('crypto');
+const user = require('../models/user');
 
 //Register a User 
 exports.registerUser = catchAsyncErrors ( async (req, res, next)=> {
@@ -78,7 +79,7 @@ exports.forgotPassword = catchAsyncErrors(async (req,res,next)=> {
     await user.save({validateBeforeSave : false})
 
     //Creating reset Password URL 
-    const resetUrl = `${req.protocol}://${req.get('host')}/password/reset/${resetToken}`;
+    const resetUrl = `${req.protocol}://${req.get('host')}/auth/password/reset/${resetToken}`;
     const message = `Your Password reset token is as Follow: \n\n${resetUrl}\n\n If you have not requested this email, then ignore it.`
     try {
             await sendEmail({ 
@@ -127,4 +128,14 @@ exports.resetPassword = catchAsyncErrors(async (req,res,next)=> {
 
     sendToken(user,200,res)
         
+})
+
+//Get currently logged in user details
+exports.getUserProfile = catchAsyncErrors (async (req, res,next)=> {
+    const user = await User.findById(req.User.id);
+    res.status(200).json({
+        success : true,
+        user
+
+    })
 })
