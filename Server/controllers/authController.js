@@ -104,7 +104,7 @@ exports.forgotPassword = catchAsyncErrors(async (req,res,next)=> {
 })
 
 //Reset A Password => /password/reset/
-exports.forgotPassword = catchAsyncErrors(async (req,res,next)=> {
+exports.resetPassword = catchAsyncErrors(async (req,res,next)=> {
     //Hash Url token 
     const resetPasswordToken = crypto.createHash('sha256').update(req.params.token).digest('hex')
 
@@ -120,5 +120,11 @@ exports.forgotPassword = catchAsyncErrors(async (req,res,next)=> {
     }
     //setup new password
     user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();  
+
+    sendToken(user,200,res)
         
 })
