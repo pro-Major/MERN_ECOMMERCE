@@ -55,6 +55,29 @@ exports.loginUser = catchAsyncErrors (async (req,res,next)=> {
     //     token
     // })
 })
+
+
+
+//Update / change Password 
+exports.updatePassword  = catchAsyncErrors (async (req,res,next)=> {
+    const user = await User.findById(req.User.id).select('+password');
+    //Checking previous user password 
+    const isMatched = await user.comparePassword(req.body.oldPassword)
+    if(!isMatched){
+        return next(new ErrorHandler(`Old Password is Incorrect`));
+    }
+    user.password = req.body.password;
+
+    await user.save();
+
+    sendToken(user,200,res)
+})
+
+
+
+
+
+//Logout A User 
 exports.logout = catchAsyncErrors ( async (req, res, next)=> {
     res.cookie('token',null, { 
         expires : new Date(Date.now()),
