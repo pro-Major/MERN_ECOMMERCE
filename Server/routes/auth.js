@@ -10,7 +10,8 @@ const { registerUser ,
         updatePassword,
         updateProfile,
         allUsers,
-        getUserDetails} = require('../controllers/authController');
+        getUserDetails,
+        updateUser} = require('../controllers/authController');
 
 const { isAuthenticatedUser , authorizeRoles } = require('../middlewares/auth');
 const { update } = require('../models/user');
@@ -40,10 +41,19 @@ router.route('/password/update')
 router.route('/me/update')
 .put(isAuthenticatedUser , updateProfile )
 
+//Admin Access API only
 router.route('/admin/users')
 .get(isAuthenticatedUser, authorizeRoles('admin'),allUsers)
 
 router.route('/admin/user/:id')
 .get(isAuthenticatedUser,authorizeRoles('admin'),getUserDetails)
+.put(isAuthenticatedUser, authorizeRoles('admin'),updateUser)
+
+
+
+
+
+
+
 
 module.exports = router;

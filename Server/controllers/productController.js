@@ -69,7 +69,7 @@ exports.updateProduct = CatchAsyncERROR ( async (req, res, next)=> {
                      message : 'product not found'
         })
      }
-    //  console.log(updateproduct)
+
      updateproduct = await Products.findByIdAndUpdate(req.params.id, req.body, {
          new : true, //to avoid some warnings
          runValidators : true,
@@ -80,12 +80,11 @@ exports.updateProduct = CatchAsyncERROR ( async (req, res, next)=> {
         message : "updated product sucessfully",
         updateproduct : updateproduct
     })
-    // console.log(updateproduct)
      
 });
 
 
-
+//Delete A Product 
 exports.deleteProducts = CatchAsyncERROR ( async (req, res, next) => {
    let deleteproducts= await Products.findById(req.params.id)
 
