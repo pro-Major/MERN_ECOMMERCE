@@ -228,3 +228,18 @@ exports.updateUser = catchAsyncErrors (async ( req, res, next)=> {
         })
     }
 )
+
+//Delete a User.Admin Access API only 
+exports.userDelete = catchAsyncErrors(async (req,res,next)=> {
+    const user = await User.findById(req.params.id);
+
+    if(!user){
+        return next(new ErrorHandler(`User does not found with id: ${req.params.id}`))
+    }
+    await user.remove();
+
+    res.status(200).json({
+        success : true,
+    })
+})
+
