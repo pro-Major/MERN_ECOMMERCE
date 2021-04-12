@@ -79,7 +79,7 @@ exports.updateProfile = catchAsyncErrors (async ( req, res, next)=> {
         email: req.body.email
     }
         //Update Avatar: TODO 
-        const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+        const user = await User.findByIdAndUpdate(req.User.id, newUserData, {
             new : true,
             runValidators: true,
             useFindAndModify : false
@@ -89,7 +89,7 @@ exports.updateProfile = catchAsyncErrors (async ( req, res, next)=> {
             success : true
         })
     }
-})
+)
 
 
 
