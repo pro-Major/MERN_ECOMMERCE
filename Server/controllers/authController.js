@@ -179,3 +179,15 @@ exports.getUserProfile = catchAsyncErrors (async (req, res,next)=> {
 
     })
 })
+
+//ADMIN ROUTES 
+
+//Get All Users 
+exports.allUsers = catchAsyncErrors (async (req,res,next)=> {
+    const users = await User.find();
+
+    res.status(200).json({
+        success : true,
+        users
+    })
+})
