@@ -6,12 +6,13 @@ const cookieParser = require('cookie-parser');
 app.use(express.json());
 app.use(cookieParser());
 //Importing All Routes 
-const products = require('./routes/products')
-const auth = require('./routes/auth')
+const products = require('./routes/products');
+const auth = require('./routes/auth');
+const order = require('./routes/order');
 
 app.use('/products',products)
 app.use('/auth',auth)
-
+app.use('/orders',order)
 //Middleware to handle Errors
 app.use(ErrorMiddleware)
 

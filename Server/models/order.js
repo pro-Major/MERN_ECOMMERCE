@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const orderschema = mongoose.Schema({
+const orderSchema = mongoose.Schema({
     shippingInfo : {
         address: {
             type: String,
@@ -10,11 +10,11 @@ const orderschema = mongoose.Schema({
             required : true,
         },
         phoneNo : {
-            type : String,
+            type : Number,
             required : true,
         },
         pinCode : {
-            type : String,
+            type : Number,
             required : true,
         },
         country : {
@@ -53,7 +53,7 @@ const orderschema = mongoose.Schema({
     itemsPrice : { type : Number,
                     required : true,
                     default : 0.0,},
-    taxprice : {type : Number,
+    GST : {type : Number,
                     required : true,
                     default : 0.0,},
     shippingPrice : {type : Number,
@@ -70,4 +70,4 @@ const orderschema = mongoose.Schema({
     createdAt : {type : Date,
                 default : Date.now}
 })
-module.exports = mongoose.model('Order',orderschema);
+module.exports = mongoose.model('Order',orderSchema);
