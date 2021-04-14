@@ -91,13 +91,12 @@ exports.updateOrder = catchAsyncErrors(async(req,res,next)=> {
 
     res.status(200).json({
         success : true,
-        order
     })
 })
 async function updateStock(id,quantity){
     const product = await Product.findById(id);
 
-    product.stock = product.stock - quantity;
+    product.Pstocks = product.Pstocks - quantity;
 
     await product.save({validateBeforeSave:false})
 }

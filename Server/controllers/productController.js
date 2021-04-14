@@ -48,7 +48,6 @@ exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
 exports.getSingleProduct = CatchAsyncERROR ( async (req, res, next)=> {
     const singleproduct = await Products.findById(req.params.id);
    
-    console.log(singleproduct)
     if((!singleproduct)) {  
         return next(new ErrorHandler('Products Not Found', 404))
     }
