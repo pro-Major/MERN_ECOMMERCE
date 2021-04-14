@@ -1,7 +1,8 @@
 const Products = require('../models/products');
 const ErrorHandler = require('../utils/ErrorHandler')
 const CatchAsyncERROR = require('../middlewares/catchAsyncErrors')
-const APIFeatures = require('../utils/apiFeatures')
+const APIFeatures = require('../utils/apiFeatures');
+const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 // const User = require('../models/user');
 Products.init() 
 
@@ -89,7 +90,7 @@ exports.deleteProducts = CatchAsyncERROR ( async (req, res, next) => {
 
    if(!deleteproducts) {
        return res.status(404).json({
-        sucess: false,   
+        success: false,   
         message: "Product not found"})
    }
    await deleteproducts.remove()
@@ -98,3 +99,38 @@ exports.deleteProducts = CatchAsyncERROR ( async (req, res, next) => {
        message: "Product deleted"
    })
 });
+
+//Create A review API 
+
+exports.createProductReview = catchAsyncErrors(async (req,res,next)=> {
+
+    const {rating, comment , productId } = req.body;
+    const review = {
+        user : req.User._id,
+        name : req.User.name,
+        rating: Number(rating),
+        comment
+    }
+    const product = await Products.findById(productId);
+    const isReviewed = product.reviews.find( //finding review
+    r => r.user.toString() === req.user._id.toString()
+    )
+    if(isReviewed){ 
+            product.reviews.forEach(review => {
+                if(review.user.toString() === req.user._id.toString()) { //updating found Review 
+                    review.comment = comment; 
+                    review.rating = rating;
+                }
+            })
+    }else {
+        product.reviews.push(review); //pushing review
+        product.numOfReviews = product.reviews.length
+    }
+    product.ratings = product.reviews.reduce((acc,item)=> item.rating + acc, 0) / product.reviews.length
+
+
+    await product.save({validateBeforeSave: false});
+    res.status(200).json({
+        success : true
+    })
+})

@@ -1,32 +1,32 @@
 const mongoose = require('mongoose')
 const productsSchema = new mongoose.Schema({
-    Pname : {
+    name : {
         type : String,
         required: [true, 'Please Enter Product Name'],
         trim : true,
         maxLength: [100, 'Product name cannot exceed 100 characters']
 
     },
-    Pprice: {
+    price: {
         type : Number,
         required : [true, 'Please Enter Product Price '],
         maxLength: [5, 'Product Price must be under 5 characters'],
         default: 0
 
     },
-    Pdescription: {
+    description: {
         type : String,
         required :[true, 'Please Enter Product Description '],
 
     },
-    PRatings: { type : Number,
+    ratings: { type : Number,
     default : 0,
     },
-    Pimages: {
-        type: Array,
-        required: false,
-      },
-    Pcategories: { 
+    images: [
+       { type: Array,
+        required: false,}
+    ],
+    category: { 
         type : String,
         required: [false, 'Please Select Category For This Product'],
         enum: {
@@ -44,27 +44,27 @@ const productsSchema = new mongoose.Schema({
                     'Home',
                   
                 ],
-                message: 'Please Select a Category'
+                message: 'Please Select a Category for Product'
         }
         
     },
-    Pseller: {
+    seller: {
         type: 'String',
         required: [true,'Please Enter a Product Seller ']
     },
-    Pstocks:{
+    stock:{
         type:'Number',
         required: [true, 'Please Enter Product Stock'],
         maxLength: [5, 'Product Name cannot 5 characters '],
         default : 0,
 
     },
-    PNumberofReviews:{ 
+    numOfReviews:{ 
         type:'Number',
         default : 0,
 
     },
-    ProductReviews:[
+    reviews:[
         {
             name: {
                 type : String,
@@ -74,7 +74,7 @@ const productsSchema = new mongoose.Schema({
                 type : Number,
                 required: true,
             },
-            comments : {
+            comment : {
                 type : String,
                 required: true,
             }
@@ -84,7 +84,7 @@ const productsSchema = new mongoose.Schema({
             ref : 'User',
             required : true
     },
-    CreatedAT: {
+    createdAt: {
         type : Date,
         default : Date.now
     }
