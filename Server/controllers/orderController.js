@@ -56,7 +56,7 @@ exports.myOrders = catchAsyncErrors(async(req,res,next)=> {
     })
 })
 
-//Get ALl Order. Only Admin can see 
+//Get ALl Order. Only Admin access 
 exports.allOrders = catchAsyncErrors(async(req,res,next)=> {
     const orders = await Order.find()
 
@@ -72,3 +72,32 @@ exports.allOrders = catchAsyncErrors(async(req,res,next)=> {
         orders
     })
 })
+
+//Update Process Order. Only Admin access 
+exports.updateOrder = catchAsyncErrors(async(req,res,next)=> {
+    const order = await Order.findById(req.params.id)
+
+  if(order.orderStatus === 'Delivered'){
+      return next(new ErrorHandler(`You have already delivered this order`,400))
+  }
+  order.orderItems.forEach(async item => {
+      await updateStock(item.product, item.quantity)
+  })
+
+  order.orderStatus = req.body.status,
+  order.deliveredAt = Date.now()
+
+  await order.save()
+
+    res.status(200).json({
+        success : true,
+        order
+    })
+})
+async function updateStock(id,quantity){
+    const product = await Product.findById(id);
+
+    product.stock = product.stock - quantity;
+
+    await product.save({validateBeforeSave:false})
+}
