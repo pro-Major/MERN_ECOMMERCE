@@ -8,8 +8,9 @@ function App() {
     return (
       <Router> 
         <div className="App">
+        <Header/>
           <div className="container container-fluid" > 
-          <Header/>
+          
               <Route path='/' component={Home} exact />
        <Footer/>
         </div>
