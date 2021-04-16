@@ -1,8 +1,8 @@
-
+import Header from './Components/layout/Header'
 function App() {
   return (
     <div className="App">
-     <h1> Ecommerce OP</h1>
+     <Header/>
     </div>
   );
 }
