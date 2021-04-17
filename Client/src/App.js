@@ -4,6 +4,9 @@ import Footer from './Components/layout/Footer';
 import Home from './Components/Home';
 import React from 'react';
 import { render } from 'react-dom';
+
+
+
 function App() {
     return (
       <Router> 
