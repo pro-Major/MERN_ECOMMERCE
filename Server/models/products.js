@@ -49,23 +49,28 @@ const productsSchema = new mongoose.Schema({
         
     },
     seller: {
-        type: 'String',
+        type: String,
         required: [true,'Please Enter a Product Seller ']
     },
     stock:{
-        type:'Number',
+        type: Number,
         required: [true, 'Please Enter Product Stock'],
         maxLength: [5, 'Product Name cannot 5 characters '],
         default : 0,
 
     },
     numOfReviews:{ 
-        type:'Number',
+        type:Number,
         default : 0,
 
     },
     reviews:[
-        {
+        {    
+            user : { 
+                type : mongoose.Schema.ObjectId,
+                ref : 'User',
+                required : true
+            },
             name: {
                 type : String,
                 required: true,

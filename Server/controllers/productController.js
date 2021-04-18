@@ -26,8 +26,8 @@ exports.newProduct = CatchAsyncERROR (
 
 //getting listed  products from search => /products?keyword=apple.
 exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
-    const resPerPage = 4;
-    const productCount = await Products.countDocuments();
+    const resPerPage = 8;
+    const productsCount = await Products.countDocuments();
     const apiFeatures = new APIFeatures(Products.find(), req.query)
         .search() 
         .pagination(resPerPage)
@@ -37,11 +37,14 @@ exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
     if(!products) {
         return next(new ErrorHandler('Products Not Found', 404))
     }
-    res.status(200).json({
-        success : true,
-        productCount,
-        products
-    })
+    setTimeout(()=> {
+        res.status(200).json({
+            success : true,
+            productsCount,
+            products
+        })
+    },2000)
+   
 });
 
 //Getting Products By ID and
@@ -112,7 +115,7 @@ exports.createProductReview = catchAsyncErrors(async (req,res,next)=> {
     }
     const product = await Products.findById(productId);
     const isReviewed = product.reviews.find( //finding review
-    r => r.user.toString() === req.user._id.toString()
+    r => r.user.toString() === req.User._id.toString()
     )
     if(isReviewed){ 
             product.reviews.forEach(review => {
