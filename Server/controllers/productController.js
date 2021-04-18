@@ -37,13 +37,11 @@ exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
     if(!products) {
         return next(new ErrorHandler('Products Not Found', 404))
     }
-    setTimeout(()=> {
         res.status(200).json({
             success : true,
             productsCount,
             products
         })
-    },0888)
    
 });
 

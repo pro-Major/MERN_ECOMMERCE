@@ -1,18 +1,24 @@
 import React, { Fragment, useEffect } from 'react';
 import MetaData from './layout/MetaData';
-import {useDispatch,useSelector} from 'react-redux';
-import {getProducts} from '../actions/productActions';
 import Product from './product/Product';
 import Loader from './layout/loader';
-const Home = () => {
-  
+import {useDispatch,useSelector} from 'react-redux';
+import {useAlert} from 'react-alert';
+
+import {getProducts} from '../actions/productActions';
+const Home = () => {  
+    const alert = useAlert();
     const  dispatch = useDispatch();
     const {loading,products,error,productsCount} = useSelector(state => state.products)
 
     useEffect(() => {
       dispatch(getProducts());
-          
-    }, [dispatch])
+
+      if(error){
+        return alert.error(error)
+      }
+
+    }, [dispatch, alert , error])  //when its value will change useEffect will refresh
 
 
     return (
