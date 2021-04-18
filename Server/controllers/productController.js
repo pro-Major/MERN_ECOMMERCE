@@ -43,7 +43,7 @@ exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
             productsCount,
             products
         })
-    },2000)
+    },0888)
    
 });
 
