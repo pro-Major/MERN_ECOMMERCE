@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react'
 import '../../App.css'
+
 const Header = () => {
     return (
-        <Fragment>
+        
+      <Fragment> 
                 <nav className="navbar row">
       <div className="col-12 col-md-3">
         <div className="navbar-brand">
@@ -33,7 +35,8 @@ const Header = () => {
         <span className="ml-1" id="cart_count">2</span>
       </div>
     </nav>
-        </Fragment>
+      
+     </Fragment>   
     )
 }
 

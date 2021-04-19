@@ -4,7 +4,7 @@ import Footer from './Components/layout/Footer';
 import Home from './Components/Home';
 import React from 'react';
 import { render } from 'react-dom';
-
+import ProductDetails from './Components/product/ProductDetails';
 
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
           <div className="container container-fluid" > 
           
               <Route path='/' component={Home} exact />
+              <Route path='/product/:id' component={ProductDetails} exact />
        <Footer/>
         </div>
         </div>
