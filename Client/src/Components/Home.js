@@ -10,13 +10,16 @@ const Home = () => {
     const alert = useAlert();
     const  dispatch = useDispatch();
     const {loading,products,error,productsCount} = useSelector(state => state.products)
-
+ 
     useEffect(() => {
-      dispatch(getProducts());
-
       if(error){
         return alert.error(error)
-      }
+     }
+     
+      dispatch(getProducts())
+
+        
+   
 
     }, [dispatch, alert , error])  //when its value will change useEffect will refresh
 

@@ -47,14 +47,14 @@ exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
 
 //Getting Products By ID and
 exports.getSingleProduct = CatchAsyncERROR ( async (req, res, next)=> {
-    const singleproduct = await Products.findById(req.params.id);
+    const product = await Products.findById(req.params.id);
    
-    if((!singleproduct)) {  
+    if((!product)) {  
         return next(new ErrorHandler('Products Not Found', 404))
     }
     res.status(200).json({
         success : true,
-        singleproduct : singleproduct
+        product : product
     })
 });
 

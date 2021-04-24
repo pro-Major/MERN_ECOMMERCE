@@ -20,6 +20,7 @@ export const productsReducers = (state={ products: []}, action)=> {
             }
         case ALL_PRODUCTS_FAIL:
             return{
+                
                 loading : false,
                 error : action.payload
             }
@@ -36,20 +37,16 @@ export const productsReducers = (state={ products: []}, action)=> {
 
 export const productDetailsReducer = (state= {product: {}},action)=> {
     switch(action.type){
+
         case PRODUCT_DETAILS_REQUEST:
             return{
                 ...state,
                 loading: true,
-
-
             }
-            case PRODUCT_DETAILS_SUCCESS:
+        case PRODUCT_DETAILS_SUCCESS:
                 return{
-                    
-                    loading: false,
-                    product : action.payload
-                    
-    
+                loading: false,
+                product : action.payload
                 }
         case PRODUCT_DETAILS_FAIL:
             return{

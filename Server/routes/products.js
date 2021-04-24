@@ -28,7 +28,7 @@ router.route('/').get(getProducts);
 
 //Getting Single Product
 router.route('/:id')
-.get(isAuthenticatedUser,getSingleProduct)
+.get(getSingleProduct)
 .post(isAuthenticatedUser,authorizeRoles('admin'),updateProduct)
 .delete(isAuthenticatedUser,authorizeRoles('admin'),deleteProducts)
 

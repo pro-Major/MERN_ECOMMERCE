@@ -2,13 +2,21 @@ import { createStore , combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {productsReducers, productDetailsReducer} from './reducers/productsReducers'
+
+
+
+
+
 const reducer = combineReducers({
         products : productsReducers,
         productDetails : productDetailsReducer
 
 })
-
+//This will put all the data before loading the application
 let initialState = {}
+
+
+
 
 
 const middleware = [thunk];
