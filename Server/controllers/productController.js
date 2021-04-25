@@ -40,6 +40,7 @@ exports.getProducts = CatchAsyncERROR ( async (req,res, next)=> {
         res.status(200).json({
             success : true,
             productsCount,
+            resPerPage,
             products
         })
    
@@ -77,7 +78,7 @@ exports.updateProduct = CatchAsyncERROR ( async (req, res, next)=> {
      })
          res.status(200).json({
         success : true,
-        message : "updated product sucessfully",
+        message : "Updated Product Sucessfully",
         updateproduct : updateproduct
     })
      
