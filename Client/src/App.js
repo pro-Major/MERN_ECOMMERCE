@@ -3,9 +3,8 @@ import Header from './Components/layout/Header';
 import Footer from './Components/layout/Footer';
 import Home from './Components/Home';
 import React from 'react';
-import { render } from 'react-dom';
 import ProductDetails from './Components/product/ProductDetails';
-
+import Login from './Components/user/Login'
 
 function App() {
     return (
@@ -16,8 +15,8 @@ function App() {
           
               <Route path='/' component={Home} exact />
               <Route path='/search/:keyword' component={Home} />
-
               <Route path='/product/:id' component={ProductDetails} exact />
+              <Route path='/login' component={Login}/>
        <Footer/>
         </div>
         </div>

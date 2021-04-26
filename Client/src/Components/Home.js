@@ -24,7 +24,7 @@ const Home = ({match}) => {
         
    
 
-    }, [dispatch, alert , error,keyword,currentPage])  //when its value will change useEffect will refresh
+    }, [dispatch,alert,error,keyword,currentPage])  //when its value will change useEffect will refresh
     function setCurrentPageNo(pageNumber) {
       setCurrentPage(pageNumber)
     }

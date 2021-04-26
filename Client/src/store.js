@@ -2,14 +2,16 @@ import { createStore , combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {productsReducers, productDetailsReducer} from './reducers/productsReducers'
+import { authReducer } from './reducers/userReducer';
 
 
 
-
-
+ 
 const reducer = combineReducers({
         products : productsReducers,
-        productDetails : productDetailsReducer
+        productDetails : productDetailsReducer,
+        auth : authReducer
+        
 
 })
 //This will put all the data before loading the application

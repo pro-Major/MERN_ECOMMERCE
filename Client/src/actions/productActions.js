@@ -13,7 +13,7 @@ import { ALL_PRODUCTS_REQUEST,
 export const getProducts =(keyword='', currentPage = 1)=> async(dispatch)=> {
     try {
             dispatch({type : ALL_PRODUCTS_REQUEST})
-            const {data} = await axios.get(`/products?${keyword}&page=${currentPage}`)
+            const {data} = await axios.get(`/products?keyword=${keyword}&page=${currentPage}`)
             dispatch({
                 type : ALL_PRODUCTS_SUCCESS,
                 payload : data
