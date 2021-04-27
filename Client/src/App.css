@@ -53,7 +53,7 @@ nav {
 }
 
 #cart {
-  font-size: 1rem;
+  font-size: larger;
   color: white;
 }
 
@@ -615,10 +615,10 @@ ul.CTAs a {
   font-size: 0.8rem;
   color: grey;
 }
-.login_button_op {
+#login_button_op {
   color: white;
-  font-size: large;
+  font-size: larger;
 }
-.login_button_op:hover{
+#login_button_op:hover{
   color: #fa9c23;
 }
