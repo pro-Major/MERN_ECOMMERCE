@@ -10,12 +10,13 @@ import Register from './Components/user/Register'
 import {loadUser} from './actions/userActions'
 import store from './store'
 import Profile from './Components/user/Profile';
+import UpdateProfile from './Components/user/UpdateProfile';
 import ProtectedRoute from './Components/route/ProtectedRoute';
 function App() {
   useEffect(()=> {
     store.dispatch(loadUser())
   },[])
-    return (
+    return ( 
       <Router> 
         <div className="App">
         <Header/>
@@ -27,6 +28,8 @@ function App() {
               <Route path='/login' component={Login}/>
               <Route path='/register' component={Register}/>
               <ProtectedRoute path='/me' component={Profile} exact/>
+              <ProtectedRoute path='/me/update' component={UpdateProfile} exact/>
+
 
        <Footer/>
         </div>

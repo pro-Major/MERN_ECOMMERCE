@@ -11,7 +11,12 @@ import {
     LOAD_USER_FAIL,
     LOGOUT_SUCCESS,
     LOGOUT_FAIL,
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    UPDATE_PROFILE_REQUEST,
+    UPDATE_PROFILE_SUCCESS,
+    UPDATE_PROFILE_FAIL,
+    UPDATE_PROFILE_RESET,
+
 } from '../constants/userConstants';
 
 //Login a User 
@@ -85,12 +90,7 @@ export const loadUser = () => async (dispatch) => {
 
 
 
-//CLear Errors 
-export const clearErrors = () => async (dispatch)=> {
-    dispatch({
-        type: CLEAR_ERRORS
-    })
-}
+
 
 //Logout A user 
 export const logout = () => async(dispatch)=>{
@@ -110,4 +110,38 @@ export const logout = () => async(dispatch)=>{
         })
     
 }
+}
+
+// Update profile
+export const updateProfile = (userData) => async (dispatch) => {
+    try {
+
+        dispatch({ type: UPDATE_PROFILE_REQUEST })
+
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+
+        const { data } = await axios.put('/auth/me/update',userData, config)
+
+        dispatch({
+            type: UPDATE_PROFILE_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (error) {
+        dispatch({
+            type: UPDATE_PROFILE_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+//CLear Errors 
+export const clearErrors = () => async (dispatch)=> {
+    dispatch({
+        type: CLEAR_ERRORS
+    })
 }

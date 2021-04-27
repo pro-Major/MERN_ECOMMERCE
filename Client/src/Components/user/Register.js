@@ -6,16 +6,17 @@ import{register,clearErrors} from '../../actions/userActions';
 
 
 const Register = ({history}) => {
-         const [name,setUser] = useState('');
+        const [name,setUser] = useState('');
         const [email,setEmail] = useState('');
         const [password,setPassword] = useState('');
         const alert = useAlert();
         const dispatch = useDispatch()
         const {isAuthenticated,error,loading} =useSelector(state=> state.auth);
     
-        useEffect(()=> {
+        useEffect(()=> ()=> {
             if(isAuthenticated){
-                history.push('/')
+              history.push('/')
+
             }
             if(error){
                 alert.error(error);
@@ -40,7 +41,7 @@ const Register = ({history}) => {
             <MetaData title={'Register User'} />
             <div className="row wrapper">
 		<div className="col-10 col-lg-5">
-        <form className="shadow-lg" onSubmit={submitHandler} encType='multipart/form-data'>
+        <form className="shadow-lg" onSubmit={submitHandler}encType='multipart/form-data'>
             <h1 className="mb-3">Register</h1>
 
           <div className="form-group">
@@ -78,9 +79,6 @@ const Register = ({history}) => {
                 onChange={(e)=> setPassword(e.target.value)}
               />
             </div>
-
-            
-  
             <button
               id="register_button"
               type="submit"
