@@ -35,11 +35,12 @@ const Header = () => {
      
                 {user ? ( 
                   <div className="ml-4 dropdown d-inline"> 
+                   <span className="login_button_op"> Hi, {user && user.name}   </span>
+
                   <Link to="#!" className="btn dropdown-toggle text-white"
                    type="button" id="dropDownMenuButton" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false"></Link> 
                      
-                      <span className="login_button_op"> Hi, {user && user.name}   </span>
                       
                       
                     
@@ -50,7 +51,7 @@ const Header = () => {
                                 )}
                                 <Link className="dropdown-item" to="/orders/me">Orders</Link>
                                 <Link className="dropdown-item" to="/me">Profile</Link>
-                                <Link className="dropdown-item text-danger" to="/" onClick={logoutHandler} >
+                                <Link className="dropdown-item text-danger font-weight-bold " to="/" onClick={logoutHandler} >
                                     Logout
                                 </Link>
                             </div>

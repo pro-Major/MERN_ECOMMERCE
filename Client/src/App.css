@@ -616,7 +616,9 @@ ul.CTAs a {
   color: grey;
 }
 .login_button_op {
-  color: #e3e3e3;
+  color: white;
   font-size: large;
-  
+}
+.login_button_op:hover{
+  color: #fa9c23;
 }
