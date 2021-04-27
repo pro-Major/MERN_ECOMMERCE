@@ -442,10 +442,11 @@ footer {
 
 .user-info p {
   font-size: 1.1rem;
+  background-color:lightcyan;
 }
 
-#edit_profile {
-  background-color: #fa9c23;
+.edit_profile {
+  
   border-color: #fa9c23;
 }
 
