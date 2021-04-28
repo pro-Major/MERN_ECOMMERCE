@@ -20,10 +20,10 @@ const UpdateProfile = ({ history }) => {
 
     useEffect(() => {
 
-        // if (user) {
-        //     setName(user.name);
-        //     setEmail(user.email);
-        // }
+        if (user) {
+            setName(user.name);
+            setEmail(user.email);
+        }
 
         if (error) {
             alert.error(error);
@@ -46,11 +46,12 @@ const UpdateProfile = ({ history }) => {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.set('name', name);
-        formData.set('email', email);
+        // const formData = new FormData();
+        // formData.set('name', name);
+        // formData.set('email', email);
 
-        dispatch(updateProfile(formData))
+
+        dispatch(updateProfile(name,email))
     }
     return (
         <Fragment>
@@ -58,7 +59,7 @@ const UpdateProfile = ({ history }) => {
 
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
-                    <form className="shadow-lg" onSubmit={submitHandler} encType='multipart/form-data'>
+                    <form className="shadow-lg" onSubmit={submitHandler}>
                         <h1 className="mt-2 mb-5">Update Profile</h1>
 
                         <div className="form-group">
@@ -86,7 +87,8 @@ const UpdateProfile = ({ history }) => {
                         </div>
 
             
-                        <button type="submit" className="btn update-btn btn-block mt-4 mb-3" disabled={loading ? true : false} >Update</button>
+                        <button type="submit" className="btn update-btn btn-block mt-4 mb-3"
+                         disabled={loading ? true : false} >Update</button>
                     </form>
                 </div>
             </div>

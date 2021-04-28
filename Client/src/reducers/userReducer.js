@@ -82,28 +82,27 @@ export const authReducer = (state = {user: {} },action)=> {
 }
 
 export const userReducer = (state= {},action)=> {
+    switch(action.type){
 
-        switch(action.type){
         case UPDATE_PROFILE_REQUEST:
             return{
                 ...state,
                 loading:true
             }
         case UPDATE_PROFILE_SUCCESS:
-            return{
+            return {
                 ...state,
-                loading:false,
+                loading: false,
                 isUpdated: action.payload
             }
         case UPDATE_PROFILE_FAIL:
-            return{
+            return {
                 ...state,
-                loading:false,
+                loading: false,
                 error: action.payload
             }
-
         case UPDATE_PROFILE_RESET:
-            return{
+            return {
                 ...state,
                 isUpdated: false
             }

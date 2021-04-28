@@ -113,18 +113,18 @@ export const logout = () => async(dispatch)=>{
 }
 
 // Update profile
-export const updateProfile = (userData) => async (dispatch) => {
+export const updateProfile = (name,email) => async (dispatch) => {
     try {
 
         dispatch({ type: UPDATE_PROFILE_REQUEST })
 
-        const config = {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }
+        // const config = {
+        //     headers: {
+        //         'Content-Type': 'application.json'
+        //     }
+        // }
 
-        const { data } = await axios.put('/auth/me/update',userData, config)
+        const { data } = await axios.put('/auth/me/update',{name,email})
 
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,

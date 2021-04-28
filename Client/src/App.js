@@ -25,7 +25,7 @@ function App() {
               <Route path='/' component={Home} exact />
               <Route path='/search/:keyword' component={Home} />
               <Route path='/product/:id' component={ProductDetails} exact />
-              <Route path='/login' component={Login}/>
+              <Route path='/login' component={Login} />
               <Route path='/register' component={Register}/>
               <ProtectedRoute path='/me' component={Profile} exact/>
               <ProtectedRoute path='/me/update' component={UpdateProfile} exact/>
