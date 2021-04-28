@@ -12,6 +12,7 @@ import store from './store'
 import Profile from './Components/user/Profile';
 import UpdateProfile from './Components/user/UpdateProfile';
 import ProtectedRoute from './Components/route/ProtectedRoute';
+import UpdatePassword from './Components/user/updatePassword';
 function App() {
   useEffect(()=> {
     store.dispatch(loadUser())
@@ -28,7 +29,9 @@ function App() {
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register}/>
               <ProtectedRoute path='/me' component={Profile} exact/>
-              <ProtectedRoute path='/me/update' component={UpdateProfile} exact/>
+              <ProtectedRoute path='/me/update' component={UpdateProfile} exact/>.
+              <ProtectedRoute path='/password/update' component={UpdatePassword} exact/>
+
 
 
        <Footer/>
