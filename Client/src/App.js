@@ -7,12 +7,14 @@ import React from 'react';
 import ProductDetails from './Components/product/ProductDetails';
 import Login from './Components/user/Login'
 import Register from './Components/user/Register'
-import {loadUser} from './actions/userActions'
+import {forgotPassword, loadUser} from './actions/userActions'
 import store from './store'
 import Profile from './Components/user/Profile';
 import UpdateProfile from './Components/user/UpdateProfile';
 import ProtectedRoute from './Components/route/ProtectedRoute';
 import UpdatePassword from './Components/user/updatePassword';
+import ForgotPassword from './Components/user/ForgotPassword';
+import NewPassword from './Components/user/NewPassword';
 function App() {
   useEffect(()=> {
     store.dispatch(loadUser())
@@ -28,9 +30,14 @@ function App() {
               <Route path='/product/:id' component={ProductDetails} exact />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register}/>
+              <Route path='/password/forgot' component={ForgotPassword} exact/>
+              <Route path='/password/reset/:token' component={NewPassword} exact/>
+
+
               <ProtectedRoute path='/me' component={Profile} exact/>
               <ProtectedRoute path='/me/update' component={UpdateProfile} exact/>.
               <ProtectedRoute path='/password/update' component={UpdatePassword} exact/>
+
 
 
 

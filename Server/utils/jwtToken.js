@@ -11,7 +11,7 @@ const sendToken = (user,statuscode,res) => {
         httpOnly : true, //to make cookie HTTP only 
     }
     res.status(statuscode).cookie('token',token,options).json({ 
-        sucess : true,
+        success : true,
         token,
         user
     })

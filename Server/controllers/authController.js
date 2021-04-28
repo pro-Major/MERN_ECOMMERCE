@@ -119,7 +119,7 @@ exports.forgotPassword = catchAsyncErrors(async (req,res,next)=> {
     await user.save({validateBeforeSave : false})
 
     //Creating reset Password URL 
-    const resetUrl = `${req.protocol}://${req.get('host')}/auth/password/reset/${resetToken}`;
+    const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
     const message = `Your Password reset token is as Follow: \n\n${resetUrl}\n\n If you have not requested this email, then ignore it.`
     try {
             await sendEmail({ 
@@ -130,8 +130,8 @@ exports.forgotPassword = catchAsyncErrors(async (req,res,next)=> {
             })
            
             res.status(200).json({
-                success : true,
-                message : `Email sent to: ${user.email}`
+                success: true,
+                message: `Email sent to: ${user.email}`
             })
      }
     catch (error) { 
