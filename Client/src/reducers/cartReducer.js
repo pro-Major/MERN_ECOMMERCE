@@ -1,11 +1,11 @@
-import { ADD_TO_CART } from '../constants/cartConstants'
+import { ADD_TO_CART_SUCCESS } from '../constants/cartConstants'
 
 export const cartReducer = (state = { cartItems: [] }, action) => {
     switch (action.type) {
 
-        case ADD_TO_CART:
+        case ADD_TO_CART_SUCCESS:
             const item = action.payload;
-
+        
             const isItemExist = state.cartItems.find(i => i.product === item.product) //checks if that item exist or not
 
             if (isItemExist) {
@@ -32,7 +32,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
         //         ...state,
         //         shippingInfo: action.payload
         //     }
-
+         
 
         default:
             return state
