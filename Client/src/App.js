@@ -15,6 +15,7 @@ import ProtectedRoute from './Components/route/ProtectedRoute';
 import UpdatePassword from './Components/user/updatePassword';
 import ForgotPassword from './Components/user/ForgotPassword';
 import NewPassword from './Components/user/NewPassword';
+import Cart from './Components/cart/Cart';
 function App() {
   useEffect(()=> {
     store.dispatch(loadUser())
@@ -24,7 +25,7 @@ function App() {
         <div className="App">
         <Header/>
           <div className="container container-fluid" > 
-          
+              <Route path='/cart' component={Cart} exact />
               <Route path='/' component={Home} exact />
               <Route path='/search/:keyword' component={Home} />
               <Route path='/product/:id' component={ProductDetails} exact />
