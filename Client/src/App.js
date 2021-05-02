@@ -16,6 +16,8 @@ import UpdatePassword from './Components/user/updatePassword';
 import ForgotPassword from './Components/user/ForgotPassword';
 import NewPassword from './Components/user/NewPassword';
 import Cart from './Components/cart/Cart';
+import Shipping from './Components/cart/Shipping';
+import ConfirmOrder from './Components/cart/ConfirmOrder'
 function App() {
   useEffect(()=> {
     store.dispatch(loadUser())
@@ -38,6 +40,9 @@ function App() {
               <ProtectedRoute path='/me' component={Profile} exact/>
               <ProtectedRoute path='/me/update' component={UpdateProfile} exact/>.
               <ProtectedRoute path='/password/update' component={UpdatePassword} exact/>
+              <ProtectedRoute path='/shipping' component={Shipping} />
+              <ProtectedRoute path='/order/confirm' component={ConfirmOrder} />
+
 
 
 

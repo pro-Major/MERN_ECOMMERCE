@@ -6,6 +6,8 @@ import MetaData from '../layout/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemToCart, removeItemFromCart } from '../../actions/cartActions'
+import { saveShippingInfo } from '../../actions/cartActions'
+
 
 const Cart = ({ history }) => {
 
@@ -65,7 +67,8 @@ const Cart = ({ history }) => {
 
 
                                             <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                                                <p id="card_item_price">${item.price}</p>
+                                                
+                                                <p id="card_item_price">{item.price} Rs</p>
                                             </div>
 
                                             <div className="col-4 col-lg-3 mt-4 mt-lg-0">
