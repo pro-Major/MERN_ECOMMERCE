@@ -13,20 +13,21 @@ app.use(bodyparser.urlencoded({extended:true}));
 //Setting Up Config files 
 dotenv.config({path : 'Server/configuration/.env'})
 
-//Seting Up Cloudinary 
-cloudinary.config({
-    cloud_name : process.env.CLOUDINARY_CLOUD_NAME,
-    api_key : process.env.CLOUDINARY_API_KEY,
-    api_secret : process.env.CLOUDINARY_API_SECRET
-})
+// //Seting Up Cloudinary 
+// cloudinary.config({
+//     cloud_name : process.env.CLOUDINARY_CLOUD_NAME,
+//     api_key : process.env.CLOUDINARY_API_KEY,
+//     api_secret : process.env.CLOUDINARY_API_SECRET
+// })
 //Importing All Routes 
 const products = require('./routes/products');
 const auth = require('./routes/auth');
 const order = require('./routes/order');
-
+const payment = require('./routes/payment');
 app.use('/products',products)
 app.use('/auth',auth)
 app.use('/orders',order)
+app.use('/api/v1',payment)
 //Middleware to handle Errors
 app.use(ErrorMiddleware)
 

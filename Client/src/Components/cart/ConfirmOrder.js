@@ -24,7 +24,7 @@ const ConfirmOrder = ({ history }) => {
             taxPrice,
             totalPrice
         }
-
+        //session storage is like local storage but its data get lost when we close chrome 
         sessionStorage.setItem('orderInfo', JSON.stringify(data))
         history.push('/payment')
     }
