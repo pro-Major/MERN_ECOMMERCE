@@ -56,7 +56,12 @@ const Payment = ({ history }) => {
     }
 
     const paymentData = {
-        amount: orderInfo.totalPrice
+        amount: Math.round(orderInfo.totalPrice * 100),
+      
+
+        
+
+
     }
 
     const submitHandler = async (e) => {
@@ -75,7 +80,7 @@ const Payment = ({ history }) => {
           res = await axios.post('/api/v1/payment/process',paymentData)
 
             const clientSecret = res.data.client_secret;
-            console.log(clientSecret)
+            console.log(clientSecret);
             if (!stripe || !elements) {
                 return;
             }
@@ -85,12 +90,22 @@ const Payment = ({ history }) => {
                     card: elements.getElement(CardNumberElement),
                     billing_details: {
                         name: user.name,
-                        email: user.email
-                    }
+                        email: user.email,
+                        address:{
+                            city:'mumbai',
+                            country:'IN',
+                            line1:'sadfa',
+                            line2:'absdjfh',
+                            postal_code:'401211',
+                            state:'Maharashtra'
+                        }
+                        
+                    },
                 }
             });
         
             if (result.error) {
+                console.log(result.error)
                 alert.error(result.error.message);
                 document.querySelector('#pay_btn').disabled = false;
             } else {
@@ -103,7 +118,7 @@ const Payment = ({ history }) => {
                         status: result.paymentIntent.status
                     }
 
-            //         dispatch(createOrder(order))
+                    // dispatch(createOrder(order))
 
                     history.push('/success')
                 } else {
@@ -115,7 +130,6 @@ const Payment = ({ history }) => {
         } catch(error) {
             document.querySelector('#pay_btn').disabled = false;
             alert.error(error.response.data)
-            console.log(error.response.data)
         }
     
     }
