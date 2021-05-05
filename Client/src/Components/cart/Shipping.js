@@ -15,7 +15,7 @@ const Shipping = ({ history }) => {
 
     const [address, setAddress] = useState(shippingInfo.address)
     const [city, setCity] = useState(shippingInfo.city)
-    const [postalCode, setPostalCode] = useState(shippingInfo.postalCode)
+    const [pinCode, setPinCode] = useState(shippingInfo.pinCode)
     const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo)
     const [country, setCountry] = useState(shippingInfo.country)
 
@@ -24,7 +24,7 @@ const Shipping = ({ history }) => {
     const submitHandler = (e) => {
         e.preventDefault()
 
-        dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, country }))
+        dispatch(saveShippingInfo({ address, city, phoneNo, pinCode, country }))
         history.push('/order/confirm')
     }
 
@@ -76,13 +76,13 @@ const Shipping = ({ history }) => {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="postal_code_field">Postal Code</label>
+                            <label htmlFor="postal_code_field">Pin Code</label>
                             <input
                                 type="number"
                                 id="postal_code_field"
                                 className="form-control"
-                                value={postalCode}
-                                onChange={(e) => setPostalCode(e.target.value)}
+                                value={pinCode}
+                                onChange={(e) => setPinCode(e.target.value)}
                                 required
                             />
                         </div>

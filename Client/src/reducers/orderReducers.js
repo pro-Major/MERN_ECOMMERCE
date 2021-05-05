@@ -6,28 +6,35 @@ import {
     CLEAR_ERRORS
 } from '../constants/orderConstants';
 
-export const createOrder = (order) => async (dispatch, getState) => {
-    try {
 
-        dispatch({ type: CREATE_ORDER_REQUEST })
+export const newOrderReducer = (state = {}, action) => {
+    switch (action.type) {
 
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
+        case CREATE_ORDER_REQUEST:
+            return {
+                ...state,
+                loading: true
             }
-        }
 
-        const { data } = await axios.post('/orders/new', order, config)
+        case CREATE_ORDER_SUCCESS:
+            return {
+                loading: false,
+                order: action.payload
+            }
 
-        dispatch({
-            type: CREATE_ORDER_SUCCESS,
-            payload: data
-        })
+        case CREATE_ORDER_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
 
-    } catch (error) {
-        dispatch({
-            type: CREATE_ORDER_FAIL,
-            payload: error.response.data.message
-        })
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state;
     }
 }

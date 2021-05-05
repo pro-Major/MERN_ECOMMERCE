@@ -5,7 +5,7 @@ import CheckoutSteps from './CheckoutSteps'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-// import { createOrder, clearErrors } from '../../actions/orderActions'
+import { createOrder, clearErrors } from '../../actions/orderActions'
 import {saveShippingInfo} from '../../actions/cartActions'
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
 
@@ -31,16 +31,16 @@ const Payment = ({ history }) => {
 
     const { user } = useSelector(state => state.auth)
     const { cartItems, shippingInfo } = useSelector(state => state.cart);
-    // const { error } = useSelector(state => state.newOrder)
+    const { error } = useSelector(state => state.newOrder)
 
     useEffect(() => {
 
-        // if (error) {
-        //     alert.error(error)
-        //     // dispatch(clearErrors())
-        // }
+        if (error) {
+            alert.error(error)
+            dispatch(clearErrors())
+        }
 
-    }, [dispatch, alert])
+    }, [dispatch, alert,error])
 
     const order = {
         orderItems: cartItems,
@@ -57,11 +57,6 @@ const Payment = ({ history }) => {
 
     const paymentData = {
         amount: Math.round(orderInfo.totalPrice * 100),
-      
-
-        
-
-
     }
 
     const submitHandler = async (e) => {
@@ -112,13 +107,12 @@ const Payment = ({ history }) => {
 
                 // The payment is processed or not
                 if (result.paymentIntent.status === 'succeeded') {
-
                     order.paymentInfo = {
                         id: result.paymentIntent.id,
                         status: result.paymentIntent.status
                     }
-
-                    // dispatch(createOrder(order))
+                    console.log(order)
+                    dispatch(createOrder(order))
 
                     history.push('/success')
                 } else {
