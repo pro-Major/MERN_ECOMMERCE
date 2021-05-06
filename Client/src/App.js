@@ -22,6 +22,7 @@ import axios from 'axios';
 import Payment from './Components/cart/Payment';
 import ListOrders from './Components/order/ListOrders'
 import OrderSuccess from './Components/cart/OrderSuccess'
+import OrderDetails from './Components/order/OrderDetails'
 // Payment
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
@@ -67,6 +68,8 @@ function App() {
           }
 
                 <ProtectedRoute path='/orders/me' component={ListOrders} exact />
+                <ProtectedRoute path='/order/:id' component={OrderDetails} exact />
+
 
 
 
