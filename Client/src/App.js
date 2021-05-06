@@ -20,8 +20,8 @@ import Shipping from './Components/cart/Shipping';
 import ConfirmOrder from './Components/cart/ConfirmOrder'
 import axios from 'axios';
 import Payment from './Components/cart/Payment';
-
-
+import ListOrders from './Components/order/ListOrders'
+import OrderSuccess from './Components/cart/OrderSuccess'
 // Payment
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
@@ -57,11 +57,16 @@ function App() {
               <ProtectedRoute path='/password/update' component={UpdatePassword} exact/>
               <ProtectedRoute path='/shipping' component={Shipping} />
               <ProtectedRoute path='/order/confirm' component={ConfirmOrder} />
+              <ProtectedRoute path='/success' component={OrderSuccess} exact />
+
+
               {stripeApiKey &&
                  <Elements stripe={loadStripe(stripeApiKey)}>
                    <ProtectedRoute path="/payment" component={Payment} />
                </Elements>
           }
+
+                <ProtectedRoute path='/orders/me' component={ListOrders} exact />
 
 
 
