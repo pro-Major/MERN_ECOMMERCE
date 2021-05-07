@@ -1,4 +1,11 @@
-import { ALL_PRODUCTS_REQUEST,
+import { ADMIN_PRODUCTS_REQUEST,
+         ADMIN_PRODUCTS_SUCCESS,
+         ADMIN_PRODUCTS_FAIL,
+    
+    
+    
+    
+        ALL_PRODUCTS_REQUEST,
         ALL_PRODUCTS_SUCCESS,
         ALL_PRODUCTS_FAIL,
         PRODUCT_DETAILS_REQUEST,
@@ -11,36 +18,50 @@ import { ALL_PRODUCTS_REQUEST,
         CLEAR_ERRORS ,
 
     } from '../constants/productConstants'
-export const productsReducers = (state={ products: []}, action)=> {
-    switch(action.type){
-        case ALL_PRODUCTS_REQUEST :
+
+    
+export const productsReducers = (state = { products: [] }, action) => {
+    switch (action.type) {
+        case ALL_PRODUCTS_REQUEST:
+        case ADMIN_PRODUCTS_REQUEST:
             return {
-                loading : true,
+                loading: true,
                 products: []
             }
-        case ALL_PRODUCTS_SUCCESS :
-            return {
-                loading : false,
-                products: action.payload.products,
-                productsCount : action.payload.productsCount,
-                resPerPage: action.payload.resPerPage
-            }
-        case ALL_PRODUCTS_FAIL:
-            return{
-                
-                loading : false,
-                error : action.payload
-            }
-        case CLEAR_ERRORS:
-            return{
-                ...state,
-                error:null
-            }
-        default: 
-            return state;
 
+        case ALL_PRODUCTS_SUCCESS:
+            return {
+                loading: false,
+                products: action.payload.products,
+                productsCount: action.payload.productsCount,
+                resPerPage: action.payload.resPerPage,
+                filteredProductsCount: action.payload.filteredProductsCount
+            }
+
+        case ADMIN_PRODUCTS_SUCCESS:
+            return {
+                loading: false,
+                products: action.payload
+            }
+
+        case ALL_PRODUCTS_FAIL:
+        case ADMIN_PRODUCTS_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state;
     }
 }
+
 
 export const productDetailsReducer = (state= {product: {}},action)=> {
     switch(action.type){
