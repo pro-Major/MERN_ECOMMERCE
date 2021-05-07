@@ -1,5 +1,7 @@
 import {BrowserRouter as Router, Route} from 'react-router-dom'; 
 import {useEffect,useState} from 'react';
+import { useSelector } from 'react-redux'
+
 import Header from './Components/layout/Header';
 import Footer from './Components/layout/Footer';
 import Home from './Components/Home';
@@ -27,6 +29,7 @@ import OrderDetails from './Components/order/OrderDetails';
 //Admin Imports
 import Dashboard from './Components/admin/Dashboard';
 import ProductList from './Components/admin/ProductList';
+import NewProduct from './Components/admin/NewProduct';
 // Payment
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
@@ -42,6 +45,8 @@ function App() {
         }
         getStripApiKey()
   },[])
+  const { user, isAuthenticated, loading } = useSelector(state => state.auth)
+
     return ( 
       <Router> 
         <div className="App">
@@ -78,14 +83,18 @@ function App() {
 
               <ProtectedRoute path='/dashboard' isAdmin={true} component={Dashboard} exact />
               <ProtectedRoute path='/admin/products' isAdmin={true} component={ProductList} exact />
+              <ProtectedRoute path='/admin/product' isAdmin={true} component={NewProduct} exact />
 
 
 
 
 
 
+              {!loading && (!isAuthenticated || user.role !== 'admin') && (
+          <Footer />
+        )}
 
-       <Footer/>
+     
         
         </div>
       </Router>

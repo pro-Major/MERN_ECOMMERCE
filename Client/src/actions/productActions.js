@@ -4,12 +4,19 @@ import { ALL_PRODUCTS_REQUEST,
     ALL_PRODUCTS_FAIL,
 
     ADMIN_PRODUCTS_REQUEST,
-         ADMIN_PRODUCTS_SUCCESS,
-         ADMIN_PRODUCTS_FAIL,
-    
+    ADMIN_PRODUCTS_SUCCESS,
+    ADMIN_PRODUCTS_FAIL,
+
+    NEW_PRODUCT_REQUEST,
+    NEW_PRODUCT_SUCCESS,
+    NEW_PRODUCT_RESET,
+    NEW_PRODUCT_FAIL,
+         
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
+
+
     NEW_REVIEW_REQUEST,
     NEW_REVIEW_SUCCESS,
     NEW_REVIEW_FAIL,
@@ -39,6 +46,34 @@ export const clearErrors = () => async (dispatch)=> {
     dispatch({
         type: CLEAR_ERRORS
     })
+}
+
+
+export const newProduct = (name,price,description,stock,seller,images) => async (dispatch) => {
+    try {
+
+        dispatch({ type: NEW_PRODUCT_REQUEST })
+
+        // const config = {
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // }
+
+        const { data } = await axios.post(`/products/newproduct`, {name,price,description,stock,seller,images})
+
+        dispatch({
+            type: NEW_PRODUCT_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        console.log(error.error)
+        dispatch({
+            type: NEW_PRODUCT_FAIL,
+            payload: error.response.data.message
+        })
+    }
 }
 
 

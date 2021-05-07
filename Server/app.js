@@ -6,9 +6,11 @@ const cookieParser = require('cookie-parser');
 const bodyparser = require('body-parser');
 const cloudinary = require('cloudinary');
 const fileUpload = require('express-fileupload');
+const cors = require('cors')
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyparser.urlencoded({extended:true}));
+app.use(cors());
 
 //Setting Up Config files 
 dotenv.config({path : 'Server/configuration/.env'})

@@ -26,28 +26,7 @@ const productsSchema = new mongoose.Schema({
        { type: Array,
         required: false,}
     ],
-    category: { 
-        type : String,
-        required: [false, 'Please Select Category For This Product'],
-        enum: {
-                values : [
-                    'Electronic',
-                    'Camera',
-                    'Laptop',
-                    'Accessories',
-                    'Headphones',
-                    'books',
-                    'Clothes/Shoes',
-                    'Beauty/Health',
-                    'Sports',
-                    'Outdoor',
-                    'Home',
-                  
-                ],
-                message: 'Please Select a Category for Product'
-        }
-        
-    },
+    
     seller: {
         type: String,
         required: [true,'Please Enter a Product Seller ']
