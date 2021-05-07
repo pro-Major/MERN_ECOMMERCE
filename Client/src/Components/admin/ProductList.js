@@ -8,8 +8,8 @@ import Sidebar from './Sidebar'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-// import { getAdminProducts, deleteProduct, clearErrors } from '../../actions/productActions'
-// import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
+import { getAdminProducts, deleteProduct, clearErrors } from '../../actions/productActions'
+import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
 
 const ProductsList = ({ history }) => {
 
@@ -17,28 +17,28 @@ const ProductsList = ({ history }) => {
     const dispatch = useDispatch();
 
     const { loading, error, products } = useSelector(state => state.products);
-    // const {  deleteError, isDeleted } = useSelector(state => state.product)
+    const {  deleteError, isDeleted } = useSelector(state => state.product)
 
-    // useEffect(() => {
-    //     // dispatch(getAdminProducts());
+    useEffect(() => {
+        dispatch(getAdminProducts());
 
-    //     // if (error) {
-    //     //     alert.error(error);
-    //     //     dispatch(clearErrors())
-    //     // }
+        if (error) {
+            alert.error(error);
+            dispatch(clearErrors())
+        }
 
-    //     // if (deleteError) {
-    //     //     alert.error(deleteError);
-    //     //     dispatch(clearErrors())
-    //     // }
+        if (deleteError) {
+            alert.error(deleteError);
+            dispatch(clearErrors())
+        }
 
-    //     // if (isDeleted) {
-    //     //     alert.success('Product deleted successfully');
-    //     //     history.push('/admin/products');
-    //     //     dispatch({ type: DELETE_PRODUCT_RESET })
-    //     // }
+        if (isDeleted) {
+            alert.success('Product deleted successfully');
+            history.push('/admin/products');
+            dispatch({ type: DELETE_PRODUCT_RESET })
+        }
 
-    // }, [dispatch, alert, error, deleteError, isDeleted, history])
+    }, [dispatch, alert, error, deleteError, isDeleted, history])
 
     const setProducts = () => {
         const data = {
@@ -92,7 +92,7 @@ const ProductsList = ({ history }) => {
     }
 
     const deleteProductHandler = (id) => {
-        // dispatch(deleteProduct(id))
+        dispatch(deleteProduct(id))
     }
 
     return (
