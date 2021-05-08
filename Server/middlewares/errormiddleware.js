@@ -9,7 +9,7 @@ module.exports = (err, req, res, next) => {
   
     if(process.env.NODE_ENV ==='DEVELOPMENT') 
      {   
-         
+         console.log(err)
         res.status(err.statusCode).json({
             success: false,
             ErrorName : err.name,
@@ -24,6 +24,7 @@ module.exports = (err, req, res, next) => {
     if(process.env.NODE_ENV === 'PRODUCTION'){
           let error = {...err}
           error.message = err.message
+          console.log(error)
 
 //Wrong Mongoose Object ID Error Handle   Message : Cast to ObjectId failed for value
         if(err.name == "CastError") {
