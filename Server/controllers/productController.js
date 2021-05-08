@@ -70,7 +70,7 @@ exports.updateProduct = CatchAsyncERROR ( async (req, res, next)=> {
                      message : 'product not found'
         })
      }
-
+     
      updateproduct = await Products.findByIdAndUpdate(req.params.id, req.body, {
          new : true, //to avoid some warnings
          runValidators : true,

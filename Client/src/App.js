@@ -26,10 +26,13 @@ import ListOrders from './Components/order/ListOrders';
 import OrderSuccess from './Components/cart/OrderSuccess';
 import OrderDetails from './Components/order/OrderDetails';
 
+
 //Admin Imports
 import Dashboard from './Components/admin/Dashboard';
 import ProductList from './Components/admin/ProductList';
 import NewProduct from './Components/admin/NewProduct';
+import UpdateProduct from './Components/admin/UpdateProduct'
+
 // Payment
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
@@ -84,6 +87,8 @@ function App() {
               <ProtectedRoute path='/dashboard' isAdmin={true} component={Dashboard} exact />
               <ProtectedRoute path='/admin/products' isAdmin={true} component={ProductList} exact />
               <ProtectedRoute path='/admin/product' isAdmin={true} component={NewProduct} exact />
+              <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={UpdateProduct} exact />
+
 
 
 

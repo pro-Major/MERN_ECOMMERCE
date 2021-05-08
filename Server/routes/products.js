@@ -34,7 +34,7 @@ router.route('/admin/products').get(getAdminProducts);
 //Getting Single Product
 router.route('/:id')
 .get(getSingleProduct)
-.post(isAuthenticatedUser,authorizeRoles('admin'),updateProduct)
+.put(isAuthenticatedUser,authorizeRoles('admin'),updateProduct)
 .delete(isAuthenticatedUser,authorizeRoles('admin'),deleteProducts)
 
 router.route('/review')
