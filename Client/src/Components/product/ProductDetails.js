@@ -112,12 +112,6 @@ const ProductDetails = ({match}) => {
 
     
     const reviewHandler = () => {
-        // const formData = new FormData();
-
-        // formData.set('rating', rating);
-        // formData.set('comment', comment);
-        // formData.set('productId', match.params.id);
-
         dispatch(newReview(rating,comment,match.params.id));
         
     }

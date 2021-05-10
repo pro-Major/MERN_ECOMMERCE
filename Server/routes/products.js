@@ -37,7 +37,7 @@ router.route('/:id')
 .put(isAuthenticatedUser,authorizeRoles('admin'),updateProduct)
 .delete(isAuthenticatedUser,authorizeRoles('admin'),deleteProducts)
 
-router.route('/review')
+router.route('/review/createreview')
 .put(isAuthenticatedUser, createProductReview)
 
 

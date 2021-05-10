@@ -17,7 +17,6 @@ import { ALL_PRODUCTS_REQUEST,
 
     NEW_PRODUCT_REQUEST,
     NEW_PRODUCT_SUCCESS,
-    // NEW_PRODUCT_RESET,
     NEW_PRODUCT_FAIL,
          
     PRODUCT_DETAILS_REQUEST,
@@ -111,13 +110,7 @@ export const newReview = (rating,comment,productId) => async (dispatch) => {
 
         dispatch({ type: NEW_REVIEW_REQUEST })
 
-        // const config = {
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // }
-
-        const { data } = await axios.put(`/products/review`,{rating,comment,productId} )
+        const { data } = await axios.put(`/products/review/createreview`,{rating,comment,productId} )
         dispatch({
             type: NEW_REVIEW_SUCCESS,
             payload: data.success
