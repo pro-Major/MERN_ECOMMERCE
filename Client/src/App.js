@@ -69,7 +69,7 @@ function App() {
               <ProtectedRoute path='/me/update' component={UpdateProfile} exact/>.
               <ProtectedRoute path='/password/update' component={UpdatePassword} exact/>
               <ProtectedRoute path='/shipping' component={Shipping} />
-              <ProtectedRoute path='/order/confirm' component={ConfirmOrder} />
+              <ProtectedRoute path='/confirm/order' component={ConfirmOrder} />
               <ProtectedRoute path='/success' component={OrderSuccess} exact />
 
 

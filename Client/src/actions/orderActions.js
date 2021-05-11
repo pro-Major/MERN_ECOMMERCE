@@ -149,7 +149,7 @@ export const deleteOrder = (id) => async (dispatch) => {
 
         dispatch({ type: DELETE_ORDER_REQUEST })
 
-        const { data } = await axios.delete(`/api/v1/admin/order/${id}`)
+        const { data } = await axios.delete(`/orders/admin/order/${id}`)
 
         dispatch({
             type: DELETE_ORDER_SUCCESS,
