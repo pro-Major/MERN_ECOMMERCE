@@ -8,7 +8,7 @@ import Sidebar from './Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { getAdminProducts } from '../../actions/productActions'  
-// import { allOrders } from '../../actions/orderActions'
+import { allOrders } from '../../actions/orderActions'
 // import { allUsers } from '../../actions/userActions'
 
 const Dashboard = () => {
@@ -17,7 +17,7 @@ const Dashboard = () => {
 
     const { products , productsCount} = useSelector(state => state.products)
     // const { users } = useSelector(state => state.allUsers)
-    // const { orders, totalAmount, loading } = useSelector(state => state.allOrders)
+    const { orders, totalAmount, loading } = useSelector(state => state.allOrders)
 
     let outOfStock = 0;
     products.forEach(product => {
@@ -28,7 +28,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         // dispatch(getAdminProducts())
-        // dispatch(allOrders())
+        dispatch(allOrders())
         // dispatch(allUsers())
     }, [dispatch])
 
@@ -76,7 +76,7 @@ const Dashboard = () => {
                                 <div className="col-xl-3 col-sm-6 mb-3">
                                     <div className="card text-white bg-danger o-hidden h-100">
                                         <div className="card-body">
-                                            <div className="text-center card-font-size">Orders<br /> <b> { /* {orders && orders.length} */}</b></div>
+                                            <div className="text-center card-font-size">Orders<br /> <b> {orders && orders.length} </b></div>
                                         </div>
                                         <Link className="card-footer text-white clearfix small z-1" to="/admin/orders">
                                             <span className="float-left">View Details</span>
