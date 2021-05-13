@@ -69,12 +69,7 @@ export const newProduct = (name,price,description,stock,seller,images) => async 
 
         dispatch({ type: NEW_PRODUCT_REQUEST })
 
-        // const config = {
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // }
-
+   
         const { data } = await axios.post(`/products/newproduct`, {name,price,description,stock,seller,images})
 
         dispatch({

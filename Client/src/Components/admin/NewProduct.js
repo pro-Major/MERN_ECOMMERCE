@@ -48,9 +48,9 @@ const NewProduct = ({ history }) => {
         // formData.set('description', description);
         // formData.set('stock', stock);
         // formData.set('seller', seller);
-
+        // const imagess = [];
         // images.forEach(image => {
-        //     formData.append('images', image)
+        //     imagess.append('images', image)
         // })
 
         dispatch(newProduct(name,price,description,stock,seller,images))
@@ -170,7 +170,7 @@ const NewProduct = ({ history }) => {
                                     id="login_button"
                                     type="submit"
                                     className="btn btn-block py-3"
-                                    disabled={loading ? true : false}
+                                    // disabled={loading ? true : false}
                                 >
                                     CREATE
                                 </button>

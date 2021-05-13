@@ -123,13 +123,13 @@ const ProductDetails = ({match}) => {
             <Fragment>
             <div className="row f-flex justify-content-around">
             <div className="col-12 col-lg-5 img-fluid" id="product_image">
-                <Carousel pause="hover"> 
-                {product.images && product.images.map(image=> (
-                    <Carousel.Item key={image.public_id} >
-                        <img className="d-block w-100 " src={image} alt={product.title} />
-                    </Carousel.Item>
-                 ))}
-                </Carousel>
+            <Carousel pause='hover'>
+                                {product.images && product.images.map(image => (
+                                    <Carousel.Item key={image.public_id}>
+                                        <img className="d-block w-100" src={image.url} alt={product.title} />
+                                    </Carousel.Item>
+                                ))}
+             </Carousel>
             </div>
             <div className="col-12 col-lg-5 mt-5">
                 <h3>{product.name}</h3>

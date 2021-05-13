@@ -23,8 +23,16 @@ const productsSchema = new mongoose.Schema({
                 default : 0,
     },
     images: [
-       { type: Array,
-        required: false,}
+        {
+            public_id: {
+                type: String,
+                required: true
+            },
+            url: {
+                type: String,
+                required: true
+            },
+        }
     ],
     
     seller: {
